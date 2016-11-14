@@ -50,17 +50,10 @@ describe Airport do
           end
 
           it 'takes off planes only from the airport they are at' do
-            airport_2 = Airport.new(Weather.new)
+            airport_2 = Airport.new(20, weather)
             airport_2.land(plane)
             expect {airport.take_off(plane)}.to raise_error("Cannot take off plane: plane not at this airport.")
-          end
-
-          it 'flying planes cannot take off' do
-            airport.land(plane)
-            flying_plane = airport.take_off(plane)
-            expect {flying_plane.take_off(plane)}.to raise_error("Plane cannot take off: already flying.")
-          end
-
+          end      
       end
 
         context 'when weather is stormy' do
@@ -71,5 +64,5 @@ describe Airport do
             expect{airport.take_off(plane)}.to raise_error("Cannot take off: weather is stormy.")
             end
         end
-end
+      end
 end
